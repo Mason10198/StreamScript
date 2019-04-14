@@ -48,7 +48,7 @@ done
 
 wait_time=$delay
 
-printf "\rStream disconnected or not found. Time: "(($time / 10))
+printf "\rStream disconnected or not found. Time: "$((time / 10))
 echo ""
 temp_cnt=${wait_time}
 dots=""
@@ -67,6 +67,4 @@ do
     ((temp_cnt--))
 done
 echo ""
-
-let "NUM++"
 done
