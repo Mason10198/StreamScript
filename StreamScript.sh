@@ -27,7 +27,7 @@ echo ""
 
 echo "Attempt "$NUM" @ "$date >> $log # Write simple log
 
-omxplayer -o hdmi -r --live $stream > /dev/null & # OMXPlayer stream command
+omxplayer -o hdmi --live $stream > /dev/null & # OMXPlayer stream command
 
 # Spinning progress indicator
 pid=$! # Process Id of OMXPlayer
