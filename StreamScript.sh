@@ -21,13 +21,12 @@ do
 clear
 tput civis
 date=`date`
-echo "------------------------------------------------------------"
-echo "|"$title" "$version" | "$date2
-echo "|Stream: "$stream
-echo "|---Connection attempts since startup---"
-echo "|Successful: "$succ
-echo "|Failed: "$fail
-echo "------------------------------------------------------------"
+echo ""$title" "$version" | "$date2
+echo "Stream: "$stream
+echo "Connection attempts since startup: "$((succ + fail))
+echo "Successful: "$succ
+echo "Failed: "$fail
+printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo ""
 
 omxplayer -o hdmi --live $stream > /dev/null & # OMXPlayer stream command
@@ -48,10 +47,12 @@ done
 
 time=$((time / 10))
 
-if [ $time < $failtimeout ]; then
+if [ $time -lt $failtimeout ]; then
   let "fail++"
+  echo "FAIL: attempt "$NUM" @ "$date >> $log
 else
   let "succ++"
+  echo "SUCCESS: attempt "$NUM" @ "$date >> $log
 fi
 
 wait_time=$delay
