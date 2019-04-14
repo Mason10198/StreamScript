@@ -6,7 +6,7 @@ version=v0.2 # Version to display
 stream=rtmp://192.168.1.4/live/tv # Stream URL to connect
 delay=30 # Delay (secs) between connection attempts
 startdelay=10s # Startup delay (specify unit)
-fail_timeout=35 # Connection duration (secs) less than this counts as fail
+failtimeout=35 # Connection duration (secs) less than this counts as fail
 log=/home/pi/streamscript.log # Location & name of logfile
 
 echo $title" "$version" starting in 10 seconds..."
@@ -47,7 +47,7 @@ done
 
 time=$((time / 10))
 
-if [ $time < $fail_timeout ]; then
+if [ $time < $failtimeout ]; then
   let "fail++"
   echo "FAIL: attempt "$NUM" @ "$date >> $log
 else
@@ -58,7 +58,7 @@ fi
 wait_time=$delay
 
 printf "\rStream disconnected or not found. Time: "
-echo "Connection duration: "$((time / 60))" minutes."
+printf "\nConnection duration: "$((time / 60))" mins "$((time % 60))" secs."
 echo ""
 temp_cnt=${wait_time}
 dots=""
