@@ -60,6 +60,7 @@ wait_time=$delay
 printf "\rStream disconnected or not found."
 printf "\nConnection duration: "$((time / 60))" mins "$((time % 60))" secs."
 echo ""
+echo ""
 temp_cnt=${wait_time}
 dots=""
 while [[ ${temp_cnt} -gt 0 ]];
