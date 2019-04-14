@@ -22,6 +22,7 @@ clear
 tput civis
 date=`date`
 echo ""$title" "$version" | "$date2
+echo ""
 echo "Stream: "$stream
 echo "Connection attempts since startup: "$((succ + fail))
 echo "Successful: "$succ
