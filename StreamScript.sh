@@ -46,10 +46,9 @@ do
   let "time++"
 done
 
-time=(($time / 10))
 wait_time=$delay
 
-printf "\rStream disconnected or not found. Time: "$time
+printf "\rStream disconnected or not found. Time: "(($time / 10))
 echo ""
 temp_cnt=${wait_time}
 dots=""
