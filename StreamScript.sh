@@ -35,11 +35,11 @@ function show_time () {
     echo $hour"h:"$min"m:"$sec"s:"
 }
 
-echo $title" "$version" starting in "$startdelay"econds..."
+echo $title" "$version" starting in "$startdelay"..."
 startdate=`date +"%R %A, %B %d"`
 succ=0
 fail=0
-lastdur="Please wait..."
+lastdur="None yet..."
 sleep $startdelay
 
 while :
@@ -82,18 +82,18 @@ convtime=`show_time $time`
 if [ $time -lt $failtimeout ]; then
   let "fail++"
   echo "FAIL: attempt "$NUM" @ "$date >> $log
+  printf "\rConnection failed."
 else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
   echo "Duration: "$convtime >> $log
+  printf "\rConnection successful."
   lastdur=$convtime
 fi
 
 wait_time=$delay
 
-printf "\rStream disconnected or not found."
-#printf "\nConnection duration: "$((time / 60))" mins "$((time % 60))" secs."
-printf "\nConnection duration: "$convtime
+printf "\nDuration: "$convtime
 echo ""
 echo ""
 temp_cnt=${wait_time}
