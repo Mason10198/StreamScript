@@ -87,7 +87,7 @@ else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
   echo "Duration: "$convtime >> $log
-  printf "\rConnection successful.        "
+  printf "\rConnection successful. Stream has now ended or lost connection."
   printf "\nDuration: "$convtime
   lastdur=$convtime
 fi
