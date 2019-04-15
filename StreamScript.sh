@@ -5,7 +5,7 @@ title=StreamScript # Title to display
 version=v0.2 # Version to display
 stream=rtmp://192.168.1.4/live/tv # Stream URL to connect
 delay=30 # Delay (secs) between connection attempts
-startdelay=10s # Startup delay (specify unit)
+startdelay=3s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
 log=/home/pi/streamscript.log # Location & name of logfile
 
@@ -35,7 +35,7 @@ function show_time () {
     echo $hour"h "$min"m "$sec"s "
 }
 
-echo $title" "$version" starting in 10 seconds..."
+echo $title" "$version" starting in"$startdelay"..."
 startdate=`date +"%R %A, %B %d"`
 succ=0
 fail=0
