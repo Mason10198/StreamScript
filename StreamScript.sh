@@ -32,13 +32,14 @@ function show_time () {
     else
         ((sec=num))
     fi
-    echo $hour"h"$min"m"$sec"s"
+    echo $hour"h "$min"m "$sec"s "
 }
 
 echo $title" "$version" starting in 10 seconds..."
 startdate=`date +"%R %A, %B %d"`
 succ=0
 fail=0
+lastdur="Please wait..."
 sleep $startdelay
 
 while :
@@ -76,6 +77,7 @@ done
 
 time=$((time / 10))
 convtime=`show_time $time`
+lastdur=$convtime
 
 if [ $time -lt $failtimeout ]; then
   let "fail++"
