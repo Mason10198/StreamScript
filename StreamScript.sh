@@ -32,10 +32,10 @@ function show_time () {
     else
         ((sec=num))
     fi
-    echo $hour"h "$min"m "$sec"s "
+    echo "$hour"h "$min"m "$sec"s ""
 }
 
-echo $title" "$version" starting in"$startdelay"..."
+echo $title" "$version" starting in "$startdelay"econds..."
 startdate=`date +"%R %A, %B %d"`
 succ=0
 fail=0
