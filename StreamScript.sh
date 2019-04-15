@@ -50,10 +50,10 @@ date=`date`
 echo ""$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo ""
-echo "Startup time: "$startdate
 echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
+echo "Last startup: "$startdate
 echo "Successful attempts: "$succ
 echo "Failed attempts: "$fail
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
@@ -76,7 +76,7 @@ do
 done
 
 time=$((time / 10))
-time=`show_time $time`
+convtime=`show_time $time`
 
 if [ $time -lt $failtimeout ]; then
   let "fail++"
@@ -84,14 +84,14 @@ if [ $time -lt $failtimeout ]; then
 else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
-  echo "Duration: "$time >> $log
+  echo "Duration: "$convtime >> $log
 fi
 
 wait_time=$delay
 
 printf "\rStream disconnected or not found."
 #printf "\nConnection duration: "$((time / 60))" mins "$((time % 60))" secs."
-printf "\nConnection duration: "$time
+printf "\nConnection duration: "$convtime
 echo ""
 echo ""
 temp_cnt=${wait_time}
