@@ -85,7 +85,7 @@ done
 echo ""
 done
 
-function displaytime {
+displaytime () {
   local T=$1
   local D=$((T/60/60/24))
   local H=$((T/60/60%24))
