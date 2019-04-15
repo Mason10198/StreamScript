@@ -7,7 +7,7 @@ stream=rtmp://192.168.1.4/live/tv # Stream URL to connect
 delay=30 # Delay (secs) between connection attempts
 startdelay=10s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
-log=/home/pi/StreamScript/streamscript.log # Location & name of logfile
+log=/home/pi/streamscript.log # Location & name of logfile
 
 echo $title" "$version" starting in 10 seconds..."
 startdate=`date +"%R %A, %B %d"`
