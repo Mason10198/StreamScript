@@ -88,12 +88,12 @@ else
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
   echo "Duration: "$convtime >> $log
   printf "\rConnection successful.        "
+  printf "\nDuration: "$convtime
   lastdur=$convtime
 fi
 
 wait_time=$delay
 
-printf "\nDuration: "$convtime
 echo ""
 echo ""
 temp_cnt=${wait_time}
