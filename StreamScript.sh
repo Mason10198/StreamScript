@@ -54,9 +54,9 @@ echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
 echo "Last startup: "$startdate
-echo "Last connection duration: "$lastdur
 echo "Successful attempts: "$succ
 echo "Failed attempts: "$fail
+echo "Last successful connection duration: "$lastdur
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo ""
 
@@ -78,7 +78,6 @@ done
 
 time=$((time / 10))
 convtime=`show_time $time`
-lastdur=$convtime
 
 if [ $time -lt $failtimeout ]; then
   let "fail++"
@@ -87,6 +86,7 @@ else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
   echo "Duration: "$convtime >> $log
+  lastdur=$convtime
 fi
 
 wait_time=$delay
