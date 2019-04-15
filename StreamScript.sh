@@ -54,6 +54,7 @@ echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
 echo "Last startup: "$startdate
+echo "Last connection duration: "$lastdur
 echo "Successful attempts: "$succ
 echo "Failed attempts: "$fail
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
