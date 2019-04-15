@@ -49,7 +49,6 @@ tput civis
 date=`date`
 echo ""$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
-echo ""
 echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
