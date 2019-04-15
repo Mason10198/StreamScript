@@ -43,14 +43,13 @@ succ=0
 fail=0
 lastdur="None yet..."
 sleep $startdelay
-
 while :
 do
 
 clear
 tput civis
 date=`date`
-echo ""$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
+echo -e "\033[1;32m"$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo "CPU Temp: "$cputemp"*C | GPU Temp: "$gputemp"*C"
 echo "Client hostname: "`hostname`
@@ -84,11 +83,11 @@ convtime=`show_time $time`
 
 if [ $time -lt $failtimeout ]; then
   let "fail++"
-  echo "FAIL: attempt "$NUM" @ "$date >> $log
+  echo "FAIL: attempt "$((succ + fail))" @ "$date >> $log
   printf "\rConnection failed.            "
 else
   let "succ++"
-  echo "SUCCESS: attempt "$NUM" @ "$date >> $log
+  echo "SUCCESS: attempt "$((succ + fail))" @ "$date >> $log
   echo "Duration: "$convtime >> $log
   printf "\rConnection successful. Stream has now ended or lost connection."
   printf "\nDuration: "$convtime
