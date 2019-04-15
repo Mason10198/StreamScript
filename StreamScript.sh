@@ -51,11 +51,11 @@ tput civis
 date=`date`
 echo -e "\033[1;32m"$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
-echo "CPU Temp: "$cputemp"*C | GPU Temp: "$gputemp"*C"
+echo -e "\033[0mCPU Temp: "$cputemp"*C | GPU Temp: "$gputemp"*C"
 echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
-echo "Last startup: "$startdate
+echo "Started at: "$startdate
 echo "Successful attempts: "$succ
 echo "Failed attempts: "$fail
 echo "Last successful connection duration: "$lastdur
