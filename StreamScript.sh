@@ -9,17 +9,30 @@ startdelay=10s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
 log=/home/pi/streamscript.log # Location & name of logfile
 
-displaytime () {
-  local T=$1
-  local D=$((T/60/60/24))
-  local H=$((T/60/60%24))
-  local M=$((T/60%60))
-  local S=$((T%60))
-  (( $D > 0 )) && printf '%d days ' $D
-  (( $H > 0 )) && printf '%d hours ' $H
-  (( $M > 0 )) && printf '%d minutes ' $M
-  (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
-  printf '%d seconds\n' $S
+function show_time () {
+    num=$1
+    min=0
+    hour=0
+    day=0
+    if((num>59));then
+        ((sec=num%60))
+        ((num=num/60))
+        if((num>59));then
+            ((min=num%60))
+            ((num=num/60))
+            if((num>23));then
+                ((hour=num%24))
+                ((day=num/24))
+            else
+                ((hour=num))
+            fi
+        else
+            ((min=num))
+        fi
+    else
+        ((sec=num))
+    fi
+    echo "$day"d "$hour"h "$min"m "$sec"s
 }
 
 echo $title" "$version" starting in 10 seconds..."
@@ -37,7 +50,8 @@ date=`date`
 echo ""$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
 echo ""
-echo "Client Hostname: "`hostname`
+echo "Startup time: "$startdate
+echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
 echo "Successful attempts: "$succ
@@ -62,6 +76,7 @@ do
 done
 
 time=$((time / 10))
+time=`show_time $time`
 
 if [ $time -lt $failtimeout ]; then
   let "fail++"
@@ -69,14 +84,14 @@ if [ $time -lt $failtimeout ]; then
 else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
-  echo "Duration: "$((time / 60))" mins "$((time % 60))" secs" >> $log
+  echo "Duration: "$time >> $log
 fi
 
 wait_time=$delay
 
 printf "\rStream disconnected or not found."
 #printf "\nConnection duration: "$((time / 60))" mins "$((time % 60))" secs."
-printf "\nConnection duration: "`displaytime $time`
+printf "\nConnection duration: "$time
 echo ""
 echo ""
 temp_cnt=${wait_time}
