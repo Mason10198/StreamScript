@@ -9,6 +9,19 @@ startdelay=10s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
 log=/home/pi/streamscript.log # Location & name of logfile
 
+displaytime () {
+  local T=$1
+  local D=$((T/60/60/24))
+  local H=$((T/60/60%24))
+  local M=$((T/60%60))
+  local S=$((T%60))
+  (( $D > 0 )) && printf '%d days ' $D
+  (( $H > 0 )) && printf '%d hours ' $H
+  (( $M > 0 )) && printf '%d minutes ' $M
+  (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
+  printf '%d seconds\n' $S
+}
+
 echo $title" "$version" starting in 10 seconds..."
 startdate=`date +"%R %A, %B %d"`
 succ=0
@@ -84,16 +97,3 @@ do
 done
 echo ""
 done
-
-displaytime () {
-  local T=$1
-  local D=$((T/60/60/24))
-  local H=$((T/60/60%24))
-  local M=$((T/60%60))
-  local S=$((T%60))
-  (( $D > 0 )) && printf '%d days ' $D
-  (( $H > 0 )) && printf '%d hours ' $H
-  (( $M > 0 )) && printf '%d minutes ' $M
-  (( $D > 0 || $H > 0 || $M > 0 )) && printf 'and '
-  printf '%d seconds\n' $S
-}
