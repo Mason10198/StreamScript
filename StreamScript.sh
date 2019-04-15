@@ -7,7 +7,7 @@ stream=rtmp://192.168.1.4/live/tv # Stream URL to connect
 delay=30 # Delay (secs) between connection attempts
 startdelay=3s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
-log=/home/pi/streamscript.log # Location & name of logfile
+log=/home/pi/StreamScript/streamscript.log # Location & name of logfile
 cputemp=$((`cat /sys/class/thermal/thermal_zone0/temp`/1000)) # Command to find CPU temp
 gputemp=`/opt/vc/bin/vcgencmd measure_temp | tr -d 'temp=' | cut -f1 -d"."` # Command to find GPU temp
 
