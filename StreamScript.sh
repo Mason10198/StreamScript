@@ -32,7 +32,7 @@ function show_time () {
     else
         ((sec=num))
     fi
-    echo $hour"h:"$min"m:"$sec"s:"
+    echo $hour"h:"$min"m:"$sec"s"
 }
 
 echo $title" "$version" starting in "$startdelay"..."
@@ -82,12 +82,12 @@ convtime=`show_time $time`
 if [ $time -lt $failtimeout ]; then
   let "fail++"
   echo "FAIL: attempt "$NUM" @ "$date >> $log
-  printf "\rConnection failed."
+  printf "\rConnection failed.            "
 else
   let "succ++"
   echo "SUCCESS: attempt "$NUM" @ "$date >> $log
   echo "Duration: "$convtime >> $log
-  printf "\rConnection successful."
+  printf "\rConnection successful.        "
   lastdur=$convtime
 fi
 
