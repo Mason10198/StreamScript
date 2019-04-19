@@ -8,8 +8,6 @@ delay=30 # Delay (secs) between connection attempts
 startdelay=3s # Startup delay (specify unit)
 failtimeout=35 # Connection duration (secs) less than this counts as fail
 log=/home/pi/StreamScript/streamscript.log # Location & name of logfile
-cputemp=$((`cat /sys/class/thermal/thermal_zone0/temp`/1000)) # Command to find CPU temp
-gputemp=`/opt/vc/bin/vcgencmd measure_temp | tr -d 'temp=' | cut -f1 -d"."` # Command to find GPU temp
 
 function show_time () {
     num=$1
@@ -51,7 +49,7 @@ tput civis
 date=`date`
 echo -e "\033[1;32m"$title" "$version" | "`date +"%R %A, %B %d"`" | Created by Mason Nelson\033[0m"
 printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
-echo "CPU Temp: "$cputemp"*C | GPU Temp: "$gputemp"*C"
+echo "CPU Temp: "$((`cat /sys/class/thermal/thermal_zone0/temp`/1000))"*C | GPU Temp: "`/opt/vc/bin/vcgencmd measure_temp | tr -d 'temp=' | cut -f1 -d"."`"*C"
 echo "Client hostname: "`hostname`
 echo "Client IP: "`hostname -I`
 echo "Stream URL: "$stream
