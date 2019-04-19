@@ -2,7 +2,7 @@
 
 ### Info / Config ###
 title=StreamScript # Title to display
-version=v0.2 # Version to display
+version=v0.3 # Version to display
 stream=rtmp://192.168.1.9/live/tv # Stream URL to connect
 delay=30 # Delay (secs) between connection attempts
 startdelay=3s # Startup delay (specify unit)
