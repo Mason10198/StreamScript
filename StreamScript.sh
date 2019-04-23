@@ -9,6 +9,32 @@ startdelay=3s                              # Startup delay (specify unit)
 failtimeout=35                             # Connection duration (secs) less than this counts as fail
 log=/home/pi/StreamScript/streamscript.log # Location & name of logfile
 
+function show_time() {
+  num=$1
+  min=0
+  hour=0
+  day=0
+  if ((num > 59)); then
+    ((sec = num % 60))
+    ((num = num / 60))
+    if ((num > 59)); then
+      ((min = num % 60))
+      ((num = num / 60))
+      if ((num > 23)); then
+        ((hour = num % 24))
+        ((day = num / 24))
+      else
+        ((hour = num))
+      fi
+    else
+      ((min = num))
+    fi
+  else
+    ((sec = num))
+  fi
+  echo $hour"h:"$min"m:"$sec"s"
+}
+
 echo $title" "$version" starting in "$startdelay"..."
 startdate=$(date +"%R %A, %B %d")
 succ=0
@@ -78,28 +104,3 @@ while :; do
   done
   echo ""
 done
-function show_time() {
-  num=$1
-  min=0
-  hour=0
-  day=0
-  if ((num > 59)); then
-    ((sec = num % 60))
-    ((num = num / 60))
-    if ((num > 59)); then
-      ((min = num % 60))
-      ((num = num / 60))
-      if ((num > 23)); then
-        ((hour = num % 24))
-        ((day = num / 24))
-      else
-        ((hour = num))
-      fi
-    else
-      ((min = num))
-    fi
-  else
-    ((sec = num))
-  fi
-  echo $hour"h:"$min"m:"$sec"s"
-}
