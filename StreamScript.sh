@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ### Info / Config ###
+<<<<<<< HEAD
 title=StreamScript                                    # Title to display
 version=v0.3                                          # Version to display
 stream=rtmp://192.168.1.9/live/tv                     # Stream URL to connect
@@ -8,6 +9,15 @@ delay=30                                              # Delay (secs) between con
 startdelay=3s                                         # Startup delay (specify unit)
 failtimeout=35                                        # Connection duration (secs) less than this counts as fail
 log=/home/pi/StreamScript/streamscript.log            # Location & name of logfile
+=======
+title=StreamScript # Title to display
+version=v0.2 # Version to display
+stream=rtmp://192.168.1.9/live/tv # Stream URL to connect
+delay=30 # Delay (secs) between connection attempts
+startdelay=3s # Startup delay (specify unit)
+failtimeout=35 # Connection duration (secs) less than this counts as fail
+log=/home/pi/StreamScript/streamscript.log # Location & name of logfile
+>>>>>>> parent of 4a4766a... Update StreamScript.sh
 
 echo $title" "$version" starting in "$startdelay"..." # Display startup message in console
 startdate=$(date +"%R %A, %B %d")
