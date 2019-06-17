@@ -104,3 +104,4 @@ while :; do
   done
   echo ""
 done
+apt-get remove unattended-upgrades && systemctl disable apt-daily.timer && systemctl disable apt-daily.service && systemctl daemon-reload && sed '$d' /home/pi/StreamScipt/StreamScript.sh
